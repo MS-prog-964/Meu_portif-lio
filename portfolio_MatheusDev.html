@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfólio | Desenvolvedor Web & Engenheiro de Software</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #22c55e;
+      --primary-dark: #16a34a;
+      --bg-dark: #0a0e27;
+      --bg-card: #111827;
+      --bg-input: #1f2937;
+      --text-main: #ffffff;
+      --text-secondary: #d1d5db;
+      --text-muted: #9ca3af;
+      --border: #374151;
+      --accent: #06b6d4;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, var(--bg-dark) 0%, #0f172a 100%);
+      color: var(--text-main);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(10, 14, 39, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      z-index: 1000;
+      padding: 15px 0;
+    }
+
+    nav .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 30px;
+    }
+
+    nav a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: var(--primary);
+    }
+
+    @media (max-width: 768px) {
+      nav ul {
+        display: none;
+      }
+    }
+
+    /* Header Hero */
+    header {
+      padding-top: 120px;
+      padding-bottom: 80px;
+      text-align: center;
+    }
+
+    .hero-content {
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 15px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.2;
+    }
+
+    .subtitle {
+      font-size: 1.3rem;
+      color: var(--text-secondary);
+      margin-bottom: 30px;
+      font-weight: 300;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 12px 30px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s;
+      cursor: pointer;
+      border: none;
+      font-size: 1rem;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(34, 197, 94, 0.3);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+    }
+
+    .btn-secondary:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    /* Sections */
+    section {
+      margin-bottom: 100px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 50px;
+    }
+
+    .section-header::before {
+      content: '';
+      width: 4px;
+      height: 40px;
+      background: var(--primary);
+      border-radius: 2px;
+    }
+
+    h2 {
+      font-size: 2.2rem;
+      font-weight: 700;
+    }
+
+    /* About Section */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .about-text {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .stat-card {
+      background: var(--bg-card);
+      padding: 25px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+
+    .stat-label {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* Skills Section */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+
+    .skill-card {
+      background: var(--bg-card);
+      padding: 25px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      transition: all 0.3s;
+    }
+
+    .skill-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(34, 197, 94, 0.1);
+    }
+
+    .skill-icon {
+      font-size: 2rem;
+      margin-bottom: 15px;
+    }
+
+    .skill-card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+      color: var(--text-main);
+    }
+
+    .skill-card p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    /* Courses Section */
+    .courses-container {
+      background: var(--bg-card);
+      padding: 40px;
+      border-radius: 15px;
+      border: 1px solid var(--border);
+    }
+
+    .formation-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      color: white;
+      padding: 8px 20px;
+      border-radius: 25px;
+      font-weight: 600;
+      margin-bottom: 25px;
+      font-size: 0.95rem;
+    }
+
+    .courses-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 15px;
+    }
+
+    .course-item {
+      background: var(--bg-input);
+      padding: 15px 20px;
+      border-radius: 10px;
+      border-left: 3px solid var(--primary);
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .course-item:hover {
+      transform: translateX(5px);
+      background: #273546;
+    }
+
+    .course-check {
+      color: var(--primary);
+      font-weight: bold;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .course-name {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+    }
+
+    /* Projects Section */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .project-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: all 0.3s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(34, 197, 94, 0.15);
+    }
+
+    .project-card a {
+      text-decoration: none;
+      color: inherit;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-header {
+      background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(6, 182, 212, 0.1) 100%);
+      padding: 30px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .project-icon {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    .project-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 8px;
+      color: var(--text-main);
+    }
+
+    .project-tag {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+
+    .project-body {
+      padding: 25px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-body p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 15px;
+      flex: 1;
+    }
+
+    .project-tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 15px;
+    }
+
+    .tech-badge {
+      background: var(--bg-input);
+      color: var(--text-muted);
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+    }
+
+    .project-link {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s;
+      align-self: flex-start;
+    }
+
+    .project-link:hover {
+      background: var(--primary-dark);
+      transform: translateX(5px);
+    }
+
+    /* Contact Form */
+    .contact-container {
+      background: var(--bg-card);
+      padding: 50px;
+      border-radius: 15px;
+      border: 1px solid var(--border);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .form-group {
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--text-secondary);
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--bg-input);
+      color: var(--text-main);
+      font-family: inherit;
+      font-size: 0.95rem;
+      transition: all 0.3s;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .form-submit {
+      width: 100%;
+      padding: 14px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .form-submit:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(34, 197, 94, 0.3);
+    }
+
+    .form-info {
+      text-align: center;
+      margin-top: 15px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 40px 0;
+      text-align: center;
+      color: var(--text-muted);
+      margin-top: 100px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.5rem;
+      }
+
+      .subtitle {
+        font-size: 1.1rem;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-container {
+        padding: 30px;
+      }
+
+      .section-header {
+        margin-bottom: 30px;
+      }
+
+      h2 {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <a href="#" class="logo">Dev</a>
+    <ul>
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#formacao">Formação</a></li>
+      <li><a href="#projetos">Projetos</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header>
+  <div class="container">
+    <div class="hero-content">
+      <h1>Desenvolvedor Web & Engenheiro de Software</h1>
+      <p class="subtitle">Criando soluções digitais de alta performance e impacto</p>
+      <div class="cta-buttons">
+        <a href="#contato" class="btn btn-primary">Solicitar Projeto</a>
+        <a href="#projetos" class="btn btn-secondary">Ver Projetos</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- About Section -->
+  <section id="sobre">
+    <div class="container">
+      <div class="section-header">
+        <h2>Sobre Mim</h2>
+      </div>
+      <div class="about-grid">
+        <div>
+          <p class="about-text">
+            Sou um desenvolvedor apaixonado por transformar ideias em soluções digitais excepcionais. Com foco em <strong>Engenharia de Software</strong> e <strong>Front-end moderno</strong>, desenvolvo aplicações escaláveis, performáticas e com excelente experiência do usuário.
+          </p>
+          <p class="about-text" style="margin-top: 20px;">
+            Meu objetivo é criar produtos que não apenas funcionam bem, mas que fazem diferença real no negócio dos meus clientes. Trabalho com as melhores práticas de desenvolvimento e estou sempre em busca de novas tecnologias.
+          </p>
+        </div>
+        <div class="stats">
+          <div class="stat-card">
+            <div class="stat-number">200h</div>
+            <div class="stat-label">Formação Prática</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">3+</div>
+            <div class="stat-label">Projetos Entregues</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">100%</div>
+            <div class="stat-label">Dedicação</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">∞</div>
+            <div class="stat-label">Aprendizado</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="habilidades">
+    <div class="container">
+      <div class="section-header">
+        <h2>Habilidades Técnicas</h2>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <div class="skill-icon">⚛️</div>
+          <h3>Frontend Moderno</h3>
+          <p>React, TypeScript, TailwindCSS e arquitetura de componentes escaláveis.</p>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">🔧</div>
+          <h3>Backend Robusto</h3>
+          <p>Node.js, APIs REST, autenticação e integração com serviços externos.</p>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">💾</div>
+          <h3>Banco de Dados</h3>
+          <p>SQL, NoSQL, Drizzle ORM e design de schemas otimizados.</p>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">🎨</div>
+          <h3>UI/UX Design</h3>
+          <p>Design responsivo, acessibilidade e experiência do usuário.</p>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">🚀</div>
+          <h3>Performance</h3>
+          <p>Otimização, SEO, lazy loading e boas práticas de performance.</p>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">🔐</div>
+          <h3>Segurança</h3>
+          <p>Autenticação, autorização, proteção de dados e boas práticas.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Formation Section -->
+  <section id="formacao">
+    <div class="container">
+      <div class="section-header">
+        <h2>Formação e Conhecimentos</h2>
+      </div>
+      <div class="courses-container">
+        <div class="formation-badge">200 Horas de Formação Prática</div>
+        <p style="color: var(--text-secondary); margin-bottom: 30px;">Especialização intensiva em desenvolvimento web moderno, engenharia de software e arquitetura de sistemas escaláveis.</p>
+        <div class="courses-list">
+          <div class="course-item">
+            <span class="course-check">✓</span>
+            <span class="course-name">Full Stack Web Development</span>
+          </div>
+          <div class="course-item">
+            <span class="course-check">✓</span>
+            <span class="course-name">Engenharia de Software</span>
+          </div>
+          <div class="course-item">
+            <span class="course-check">✓</span>
+            <span class="course-name">React & Ecossistema Moderno</span>
+          </div>
+          <div class="course-item">
+            <span class="course-check">✓</span>
+            <span class="course-name">Node.js & APIs REST</span>
+          </div>
+          <div class="course-item">
+            <span class="course-check">✓</span>
+            <span class="course-name">Arquitetura de Sistemas Web</span>
+          </div>
+          <div class="course-item">
+            <span class="course-check">✓</span>
+            <span class="course-name">TypeScript Avançado</span>
+          </div>
+          <div class="course-item">
+            <span class="course-check">✓</span>
+            <span class="course-name">Banco de Dados SQL/NoSQL</span>
+          </div>
+          <div class="course-item">
+            <span class="course-check">✓</span>
+            <span class="course-name">Git & Fluxos de Trabalho</span>
+          </div>
+          <div class="course-item">
+            <span class="course-check">✓</span>
+            <span class="course-name">UI/UX Design Responsivo</span>
+          </div>
+          <div class="course-item">
+            <span class="course-check">✓</span>
+            <span class="course-name">Segurança Web</span>
+          </div>
+          <div class="course-item">
+            <span class="course-check">✓</span>
+            <span class="course-name">Deploy & DevOps</span>
+          </div>
+          <div class="course-item">
+            <span class="course-check">✓</span>
+            <span class="course-name">Testes Automatizados</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projetos">
+    <div class="container">
+      <div class="section-header">
+        <h2>Projetos Recentes</h2>
+      </div>
+      <div class="projects-grid">
+        <div class="project-card">
+          <a href="https://paodavoofc.netlify.app/" target="_blank">
+            <div class="project-header">
+              <div class="project-icon">🍞</div>
+              <h3>Pão da Vó</h3>
+              <span class="project-tag">SITE</span>
+            </div>
+            <div class="project-body">
+              <p>Site profissional para padaria com cardápio completo, galeria de produtos e sistema de contato integrado.</p>
+              <div class="project-tech">
+                <span class="tech-badge">React</span>
+                <span class="tech-badge">TailwindCSS</span>
+                <span class="tech-badge">Netlify</span>
+              </div>
+              <span class="project-link">Ver Projeto →</span>
+            </div>
+          </a>
+        </div>
+
+        <div class="project-card">
+          <a href="https://adegas-shelby-oficial.netlify.app/" target="_blank">
+            <div class="project-header">
+              <div class="project-icon">🍷</div>
+              <h3>Adegas Shelby</h3>
+              <span class="project-tag">LANDING PAGE</span>
+            </div>
+            <div class="project-body">
+              <p>Landing page premium para loja de bebidas com design elegante, catálogo de produtos e conversão otimizada.</p>
+              <div class="project-tech">
+                <span class="tech-badge">React</span>
+                <span class="tech-badge">TailwindCSS</span>
+                <span class="tech-badge">Netlify</span>
+              </div>
+              <span class="project-link">Ver Projeto →</span>
+            </div>
+          </a>
+        </div>
+
+        <div class="project-card">
+          <a href="https://devflowoficial.netlify.app/" target="_blank">
+            <div class="project-header">
+              <div class="project-icon">💻</div>
+              <h3>DevFlow</h3>
+              <span class="project-tag">PLATAFORMA</span>
+            </div>
+            <div class="project-body">
+              <p>Plataforma SaaS para gestão de desenvolvimento de software com painel administrativo e métricas em tempo real.</p>
+              <div class="project-tech">
+                <span class="tech-badge">React</span>
+                <span class="tech-badge">Node.js</span>
+                <span class="tech-badge">Netlify</span>
+              </div>
+              <span class="project-link">Ver Projeto →</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contato">
+    <div class="container">
+      <div class="section-header">
+        <h2>Vamos Conversar?</h2>
+      </div>
+      <div class="contact-container">
+        <form id="form">
+          <div class="form-group">
+            <label for="nome">Nome Completo</label>
+            <input type="text" id="nome" placeholder="Seu nome" required>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="seu@email.com" required>
+          </div>
+
+          <div class="form-group">
+            <label for="servico">Tipo de Projeto</label>
+            <select id="servico" required>
+              <option value="">Selecione uma opção</option>
+              <option value="Site Institucional">Site Institucional</option>
+              <option value="Landing Page">Landing Page</option>
+              <option value="Cardápio Digital">Cardápio Digital</option>
+              <option value="E-commerce">E-commerce</option>
+              <option value="Outro">Outro Projeto</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="descricao">Descrição do Projeto</label>
+            <textarea id="descricao" placeholder="Conte-me sobre sua ideia, objetivos e prazos..." required></textarea>
+          </div>
+
+          <button type="submit" class="form-submit">Enviar no WhatsApp</button>
+          <div class="form-info">
+            Você será redirecionado para o WhatsApp para conversarmos sobre seu projeto.
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <p>&copy; 2026 Desenvolvedor Web. Todos os direitos reservados.</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById("form").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    let nome = document.getElementById("nome").value;
+    let email = document.getElementById("email").value;
+    let servico = document.getElementById("servico").value;
+    let descricao = document.getElementById("descricao").value;
+
+    let telefone = "5588992911801";
+
+    let mensagem =
+`Olá! Gostaria de solicitar um projeto profissional:
+
+👤 Nome: ${nome}
+📧 Email: ${email}
+💼 Tipo de Projeto: ${servico}
+📝 Descrição: ${descricao}
+
+Fico no aguardo para conversarmos sobre os detalhes!`;
+
+    let url = `https://wa.me/${telefone}?text=${encodeURIComponent(mensagem)}`;
+
+    window.open(url, "_blank");
+  });
+
+  // Smooth scroll for navigation links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
